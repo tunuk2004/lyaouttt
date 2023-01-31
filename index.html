@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>layout</title>
+    <style>
+        .container {
+            width: 800px;
+            border: 2px solid;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            padding: 20px;
+            background-color: rgb(22, 46, 63);
+        }
+        .block-item {
+            background-color: rgb(255, 255, 255);
+            width: 230px;
+            height: 130px;
+            border: 2px solid;
+            border-radius: 10px;
+            display:flex;
+            /* justify-content: center; */
+            align-items: center;
+            flex-direction: column;
+        }
+
+        img{
+            margin: 5px 3px;
+        }
+
+        .block-item[block-color='1'] ,
+        .block-item[block-color='2'] ,
+        .block-item[block-color='3'] {
+            border: 2px solid rgb(0, 234, 255);
+            border-bottom: 9px solid rgb(0, 128, 255);
+            border-radius: 1px;
+        }
+        .block-item[block-color='4'] ,
+        .block-item[block-color='5'] ,
+        .block-item[block-color='6'] {
+            border: 2px solid rgb(0, 234, 255);
+            border-bottom: 9px solid rgb(255, 0, 247);
+            border-radius: 1px;
+            
+        }
+        .block-item[block-color='7'] ,
+        .block-item[block-color='8'] ,
+        .block-item[block-color='9'] {
+            border: 2px solid rgb(0, 234, 255);
+            border-bottom: 9px solid rgb(94, 255, 0);
+            border-radius: 1px;
+
+        }
+
+        .title{
+            width: 100%;
+            font-weight: 900;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .sub{
+            font-size: 600;
+        }
+
+        .block-item:nth-child(n-3) .title{
+            color: rgb(255, 255, 255);
+            border-bottom: 2px solid rgb(255, 0, 200);
+            background-color: rgb(60, 1, 57);
+        }
+
+        .block-item:nth-child(n-3) .sub{
+            color: rgb(0, 30, 255);
+        }
+        .block-item[block-color='1'] .title,
+        .block-item[block-color='2'] .title,
+        .block-item[block-color='3'] .title{
+            color: rgb(253, 253, 253);
+            border-bottom: 2px solid rgb(16, 6, 99);
+            background-color: rgb(7, 12, 83);
+        }
+        .block-item[block-color='4'] .sub,
+        .block-item[block-color='5'] .sub,
+        .block-item[block-color='6'] .sub{
+            color: rgb(255, 15, 255);
+            
+                
+            
+        }
+        .block-item[block-color='7'] .title,
+        .block-item[block-color='8'] .title,
+        .block-item[block-color='9'] .title{
+            color: rgb(251, 255, 251);
+            border-bottom: 2px solid red;
+            background-color: rgb(16, 54, 7);
+        }
+
+        .block-item[block-color='7'] .sub,
+        .block-item[block-color='8'] .sub,
+        .block-item[block-color='9'] .sub{
+            color: rgb(4, 37, 0);
+        }*
+
+    </style>
+</head>
+<body>
+    <script>
+        let data = [
+            {
+                title:'7:25 AM',
+                Image:"9.jpeg",
+                description:'Boston'
+            },
+            {
+                title:'8:15',
+                Image:"8.jpeg",
+                description:'Madrid'
+            },
+            {
+                title:'translate',
+                Image:"7.jpeg",
+                description:'English'
+            },
+            {
+                title:'Bike',
+                Image:"6.jpeg",
+                description:'15.1 Miles'
+            },
+            {
+                title:'Boat',
+                Image:"5.jpeg",
+                description:'60 Minutes'
+            },
+            {
+                title:'Drive',
+                Image:"4.jpeg",
+                description:'48 Miles'
+            },
+            {
+                title:'Morning',
+                Image:"3.jpeg",
+                description:'Coffee'
+            },
+            {
+                title:'Afternoon',
+                Image:"1.jpeg",
+                description:'Gym'
+            },
+            {
+                title:'Night',
+                Image:"2.jpeg",
+                description:'Hot Tub'
+            }
+        ];
+        let container = document.createElement("div");
+        container.classList.add("container");
+        const renderBlock = () => {
+            // убактылуу сактоочу жер
+            let fragment = new DocumentFragment();
+            data.map((item,id) => {
+              let block = document.createElement("div");
+              block.classList.add('block-item');
+              block.setAttribute('block-color',id+1)
+              block.innerHTML = `
+                <div class='title'>${item.title}</div>
+                <img width='50px' src = ${item.Image}>
+                <div class='sub'>${item.description}</div>
+            `;
+            fragment.append(block);
+        });
+        return fragment;
+    };
+    container.append(renderBlock());
+    document.body.append(container);
+    renderBlock()
+    </script>
+
+</body>
+</html>
